@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Kalkulator</title>
+
+<style>
+body {
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial;
+}
+
+.calc {
+  background: #222;
+  padding: 20px;
+  border-radius: 20px;
+  width: 280px;
+}
+
+#display {
+  background: black;
+  color: #0f0;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: right;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+button {
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background: #333;
+  color: white;
+  font-size: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="calc">
+  <div id="display">0</div>
+
+  <div class="buttons">
+    <button onclick="add('1')">1</button>
+    <button onclick="add('2')">2</button>
+    <button onclick="add('3')">3</button>
+    <button onclick="add('+')">+</button>
+
+    <button onclick="add('4')">4</button>
+    <button onclick="add('5')">5</button>
+    <button onclick="add('6')">6</button>
+    <button onclick="add('-')">-</button>
+
+    <button onclick="add('7')">7</button>
+    <button onclick="add('8')">8</button>
+    <button onclick="add('9')">9</button>
+    <button onclick="add('*')">×</button>
+
+    <button onclick="clearDisplay()">C</button>
+    <button onclick="add('0')">0</button>
+    <button onclick="hitung()">=</button>
+    <button onclick="add('/')">÷</button>
+  </div>
+</div>
+
+<script>
+let display = document.getElementById("display");
+
+// 🔊 PASTIKAN FILE INI ADA!
+let soundTolol = new Audio("sound.mp3");
+
+function playTolol() {
+  soundTolol.currentTime = 0;
+  soundTolol.play();
+}
+
+function add(val) {
+  if (display.innerText === "0") {
+    display.innerText = val;
+  } else {
+    display.innerText += val;
+  }
+}
+
+function clearDisplay() {
+  display.innerText = "0";
+}
+
+function hitung() {
+  let input = display.innerText;
+
+  let troll = ["1+1","1+2","1+3","1+4","1+5","1+6","1+7","1+8","1+9"];
+
+  if (troll.includes(input)) {
+    display.innerText = "tolol 😭";
+    playTolol();
+  } else {
+    try {
+      display.innerText = eval(input);
+    } catch {
+      display.innerText = "ERROR";
+    }
+  }
+}
+</script>
+
+</body>
+</html>
